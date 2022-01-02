@@ -1,8 +1,11 @@
 let playerSelection;
 let computerSelection;
-let rock = "rock";
-let paper = "paper";
-let scissors = "scissors";
+let rock = "Rock";
+let paper = "Paper";
+let scissors = "Scissors";
+let win = 0;
+let draw = 0;
+let lose = 0;
 
 function computerPlay() {
   computerSelection = Math.floor(Math.random() * 3);
@@ -22,13 +25,15 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
   playerSelection = prompt("Rock, Paper or Scissors?");
-  playerSelection = playerSelection.toLowerCase();
+  playerSelection =
+    playerSelection.charAt(0).toUpperCase() +
+    playerSelection.slice(1).toLowerCase();
   switch (playerSelection) {
-    case "rock":
+    case "Rock":
       break;
-    case "paper":
+    case "Paper":
       break;
-    case "scissors":
+    case "Scissors":
       break;
     default:
       console.log("Please enter either Rock, Paper or Scissors");
@@ -38,28 +43,44 @@ function playRound(playerSelection, computerSelection) {
   computerSelection = computerPlay();
 
   if (
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissors" && computerSelection === "paper")
+    (playerSelection === "Rock" && computerSelection === "Scissors") ||
+    (playerSelection === "Paper" && computerSelection === "Rock") ||
+    (playerSelection === "Scissors" && computerSelection === "Paper")
   ) {
+    win++;
     console.log(playerSelection + " vs. " + computerSelection + ". You win!");
   } else if (
-    (playerSelection === "rock" && computerSelection === "rock") ||
-    (playerSelection === "paper" && computerSelection === "paper") ||
-    (playerSelection === "scissors" && computerSelection === "scissors")
+    (playerSelection === "Rock" && computerSelection === "Rock") ||
+    (playerSelection === "Paper" && computerSelection === "Paper") ||
+    (playerSelection === "Scissors" && computerSelection === "Scissors")
   ) {
+    draw++;
     console.log(playerSelection + " vs. " + computerSelection + ". Draw!");
   } else {
+    lose++;
     console.log(playerSelection + " vs. " + computerSelection + ". You lost!");
   }
 }
 
 function game() {
-  playRound();
-  playRound();
-  playRound();
-  playRound();
-  playRound();
+  for (let i = 0; i < 5; i++) {
+    playRound(i);
+  }
 }
 
 game();
+console.log("You won " + win + " times");
+console.log("You tied " + draw + " times");
+console.log("You lost " + lose + " times");
+
+function result() {
+  if (win > lose) {
+    console.log("You won this game of 5! Congrats.");
+  } else if (win < lose) {
+    console.log("You lost this game of 5! Try again.");
+  } else {
+    console.log("It's a tie!");
+  }
+}
+
+result();
