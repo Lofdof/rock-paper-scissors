@@ -7,6 +7,7 @@ let win = 0;
 let draw = 0;
 let lose = 0;
 
+// COMPUTER PLAY
 function computerPlay() {
   computerSelection = Math.floor(Math.random() * 3);
   if (computerSelection === 0) {
@@ -19,10 +20,6 @@ function computerPlay() {
 }
 
 // PLAY
-// 0 == rock
-// 1 == paper
-// 2 == scissors
-
 function playRound(playerSelection, computerSelection) {
   playerSelection = prompt("Rock, Paper or Scissors?");
   playerSelection =
@@ -62,6 +59,7 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+//LOOP FOR A GAME OF 5
 function game() {
   for (let i = 0; i < 5; i++) {
     playRound(i);
@@ -69,10 +67,11 @@ function game() {
 }
 
 game();
-console.log("You won " + win + " times");
-console.log("You tied " + draw + " times");
-console.log("You lost " + lose + " times");
+console.log("You won " + win + " times.");
+console.log("You tied " + draw + " times.");
+console.log("You lost " + lose + " times.");
 
+//RESULT
 function result() {
   if (win > lose) {
     console.log("You won this game of 5! Congrats.");
